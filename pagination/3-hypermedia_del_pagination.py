@@ -67,26 +67,22 @@ class Server:
         assert isinstance(index, int) and index >= 0
         assert isinstance(page_size, int) and page_size > 0
 
+        # Retrieve the indexed dataset
         indexed_dataset = self.indexed_dataset()
-        """if not indexed_dataset:
-            assert index == 0
-            return {
-                'index': 0,
-                'next_index': None,
-                'page_size': 0,
-                'data': []
-            }"""
+        # Find the highest index available in the dataset
         max_index = max(indexed_dataset.keys())
 
         assert index <= max_index
 
+        # Iterate through the dataset, skipping deleted indices
         current = index
         data = []
         while len(data) < page_size and current <= max_index:
-            if current in indexed_dataset:
+            if current in indexed_dataset:  # Add only if the row exists
                 data.append(indexed_dataset[current])
-            current += 1
+            current += 1  # Move to the next index
 
+        # Determine the starting index for the next page
         if current > max_index:
             next_index = None
         else:

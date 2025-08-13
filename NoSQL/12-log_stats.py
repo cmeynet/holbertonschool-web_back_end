@@ -23,11 +23,11 @@ if __name__ == "__main__":
     # Select the 'logs' database then the 'nginx' collection
     col = client.logs.nginx
 
-    print(f"logs: {col.count_documents({})}")
+    print("{} logs".format(col.count_documents({})))
     print("Methods:")
-    print(f"\tmethod GET: {col.count_documents({'method': 'GET'})}")
-    print(f"\tmethod POST: {col.count_documents({'method': 'POST'})}")
-    print(f"\tmethod PUT: {col.count_documents({'method': 'PUT'})}")
-    print(f"\tmethod PATCH: {col.count_documents({'method': 'PATCH'})}")
-    print(f"\tmethod DELETE: {col.count_documents({'method': 'DELETE'})}")
-    print(f"status check: {col.count_documents({'method': 'GET', 'path': '/status'})}")
+    print("\tmethod GET: {}".format(col.count_documents({'method': 'GET'})))
+    print("\tmethod POST: {}".format(col.count_documents({'method': 'POST'})))
+    print("\tmethod PUT: {}".format(col.count_documents({'method': 'PUT'})))
+    print("\tmethod PATCH: {}".format(col.count_documents({'method': 'PATCH'})))
+    print("\tmethod DELETE: {}".format(col.count_documents({'method': 'DELETE'})))
+    print("{} status check".format(col.count_documents({'method': 'GET', 'path': '/status'})))

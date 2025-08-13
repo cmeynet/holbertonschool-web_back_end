@@ -21,14 +21,13 @@ if __name__ == "__main__":
     # Create a MongoDB client
     client = MongoClient("mongodb://127.0.0.1:27017")
     # Select the 'logs' database then the 'nginx' collection
-    collection = client.logs.nginx
+    col = client.logs.nginx
 
-    print(f"{collection.count_documents({})} logs")
-    print(f"""Methods:
-    \tmethod GET: {collection.count_documents({"method": "GET"})}
-    \tmethod POST: {collection.count_documents({"method": "POST"})}
-    \tmethod PUT: {collection.count_documents({"method": "PUT"})}
-    \tmethod PATCH: {collection.count_documents({"method": "PATCH"})}
-    \tmethod DELETE: {collection.count_documents({"method": "DELETE"})}""")
-    print(f"""{collection.count_documents
-               ({"method": "GET", "path": "/status"})} status check""")
+    print(f"logs: {col.count_documents({})}")
+    print("Methods:")
+    print(f"\tmethod GET: {col.count_documents({'method': 'GET'})}")
+    print(f"\tmethod POST: {col.count_documents({'method': 'POST'})}")
+    print(f"\tmethod PUT: {col.count_documents({'method': 'PUT'})}")
+    print(f"\tmethod PATCH: {col.count_documents({'method': 'PATCH'})}")
+    print(f"\tmethod DELETE: {col.count_documents({'method': 'DELETE'})}")
+    print(f"status check: {col.count_documents({'method': 'GET', 'path': '/status'})}")

@@ -17,17 +17,18 @@ Display:
 """
 from pymongo import MongoClient
 
-# Create a MongoDB client
-client = MongoClient("mongodb://127.0.0.1:27017")
-# Select the 'logs' database then the 'nginx' collection
-collection = client.logs.nginx
+if __name__ == "__main__":
+    # Create a MongoDB client
+    client = MongoClient("mongodb://127.0.0.1:27017")
+    # Select the 'logs' database then the 'nginx' collection
+    collection = client.logs.nginx
 
-print(f"""{collection.count_documents({})} logs
-Methods:
-\tmethod GET: {collection.count_documents({"method": "GET"})}
-\tmethod POST: {collection.count_documents({"method": "POST"})}
-\tmethod PUT: {collection.count_documents({"method": "PUT"})}
-\tmethod PATCH: {collection.count_documents({"method": "PATCH"})}
-\tmethod DELETE: {collection.count_documents({"method": "DELETE"})}
-{collection.count_documents
- ({"method": "GET", "path": "/status"})} status check""")
+    print(f"{collection.count_documents({})} logs")
+    print(f"""Methods:
+    \tmethod GET: {collection.count_documents({"method": "GET"})}
+    \tmethod POST: {collection.count_documents({"method": "POST"})}
+    \tmethod PUT: {collection.count_documents({"method": "PUT"})}
+    \tmethod PATCH: {collection.count_documents({"method": "PATCH"})}
+    \tmethod DELETE: {collection.count_documents({"method": "DELETE"})}""")
+    print(f"""{collection.count_documents
+               ({"method": "GET", "path": "/status"})} status check""")

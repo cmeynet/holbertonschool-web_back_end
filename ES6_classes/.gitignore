@@ -3,3 +3,4 @@
 
 # Ignore file
 package-lock.json
+nodesource_setup.sh

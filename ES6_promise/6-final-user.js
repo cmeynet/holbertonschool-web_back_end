@@ -7,7 +7,7 @@ export default function handleProfileSignup(firstName, lastName, filename) {
   return Promise.allSettled(promises)
     .then((results) => results.map((result) => (
       result.status === 'fulfilled'
-        ? { status: result.status, value: result.value }
+        ? { status: result.status, value: result.value.toString() }
         : { status: result.status, value: result.reason }
     )));
 }

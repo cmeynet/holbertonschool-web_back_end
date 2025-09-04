@@ -1,11 +1,12 @@
+const fs = require('fs');
+
 function countStudents(path) {
-  const fs = require('fs');
   try {
     const data = fs.readFileSync(path, 'utf8'); // lit le fichier de manière synchrone
     const lines = data.split('\n'); // divise le contenu du CSV en un tableau de lignes
-    const cleanLines = lines.filter(line => line.trim() !== ''); // supprime les lignes vides ou contenant seulement des espaces
+    const cleanLines = lines.filter((line) => line.trim() !== ''); // supprime les lignes vides ou contenant seulement des espaces
     const rows = cleanLines.slice(1); // retourne un tableau sans la première ligne
-    const students = rows.map(line => line.split(',')); // transformer en tableau de tableaux
+    const students = rows.map((line) => line.split(',')); // transformer en tableau de tableaux
     const totalStudents = students.length; // compter le nombre d'étudiants
     console.log(`Number of students: ${totalStudents}`);
 

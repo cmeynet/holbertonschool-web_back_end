@@ -36,13 +36,13 @@ function countStudents(path) {
   });
 }
 
-const app = http.createServer((req, res) => {
+const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
     res.writeHead(200, { 'Content-type': 'text/plain' });
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     res.writeHead(200, { 'Content-type': 'text/plain' });
-    countStudents(process.argv[2])
+    await countStudents(process.argv[2])
       .then((texte) => {
         res.end(`This is the list of our students\n${texte}`);
       })
